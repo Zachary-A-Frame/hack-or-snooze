@@ -1,0 +1,36 @@
+#submit-form {
+    margin: 20px;
+    font-family: Arimo, sans-serif;
+}
+
+input {
+    margin: 20px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 2px;
+    padding: 8px;
+    width: 300px;
+    box-shadow: rgb(49, 53, 55) 0px 0px 3px 1px;
+    border-color: initial;
+    display: flex;
+}
+
+#submit-button {
+    border: 2px solid #03A062;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 100px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin: 20px;
+}
+
+#submit-button:hover {
+    background-color: #03A062;
+    color: white;
+}
