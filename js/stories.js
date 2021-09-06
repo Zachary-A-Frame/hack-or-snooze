@@ -23,9 +23,13 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+  const showStar = Boolean(currentUser);
+
   return $(`
       <li id="${story.storyId}">
-      <i class="far fa-star" id="favorite"></i>
+      <!-- <i class="far fa-star favorite"></i> -->
+        ${showStar ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -36,6 +40,13 @@ function generateStoryMarkup(story) {
     `);
 }
 
+function getStarHTML(story, user) {
+  const isFavorite = user.isFavorite(story)
+  const starType = isFavorite ? "fas" : "far"
+  return `<span class="star">
+            <i class="${starType} fa-star"></i>
+          <span>`
+}
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
 function putStoriesOnPage() {
@@ -67,3 +78,19 @@ function submitNewStory(event) {
 
 $submitPost.on("submit", submitNewStory)
 
+async function toggleStoryFavorite(event) {
+  const $target = $(event.target)
+  const $item = $target.closest("li")
+  const storyId = $item.attr("id")
+  const story = storyList.stories.find(s => s.storyId === storyId)
+
+  if ($target.hasClass("fas")) {
+    await currentUser.removeFavorite(story)
+    $target.closest("i").toggleClass("fas far")
+  } else {
+    await currentUser.addFavorite(story)
+    $target.closest("i").toggleClass("fas far")
+  }
+}
+
+$storiesLists.on("click", ".star", toggleStoryFavorite);
