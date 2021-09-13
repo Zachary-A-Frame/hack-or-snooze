@@ -42,8 +42,11 @@ function addNewStory() {
 $navSubmit.on("click", addNewStory)
 
 function showFavorites() {
-  hidePageComponents();
+  hidePageComponents()
+  putFavoritesOnPage()
+  console.log("Show Favorites")
 }
+
 
 // $("#submit-button").on("click", console.log("Hemlo"))
 

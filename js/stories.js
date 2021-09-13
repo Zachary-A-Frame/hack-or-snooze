@@ -75,6 +75,20 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
+function putFavoritesOnPage() {
+  console.debug("putFavoritesOnPage")
+
+  $favoriteStoriesList.empty()
+
+  for (let story of currentUser.favorites) {
+    // console.log(story)
+    const $story = generateStoryMarkup(story)
+    console.log($story)
+    $favoriteStoriesList.show();
+    $favoriteStoriesList.append($story);
+  }
+  console.log(currentUser.favorites[0])
+}
 
 function submitNewStory(event) {
   event.preventDefault()
