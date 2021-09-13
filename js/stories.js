@@ -36,6 +36,7 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
+        <div class="remove-button">X</div>
       </li>
     `);
 }
@@ -49,6 +50,17 @@ function getStarHTML(story, user) {
 }
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
+async function instantiateRemover() {
+  $(".remove-button").on('click', function (event) {
+    console.log(event)
+    const $target = $(event.target)
+    const $item = $target.closest("li")
+    const storyId = $item.attr("id")
+
+    removeStory(currentUser, storyId)
+  })
+}
+
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 
@@ -59,7 +71,7 @@ function putStoriesOnPage() {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }
-
+  instantiateRemover()
   $allStoriesList.show();
 }
 
@@ -73,7 +85,7 @@ function submitNewStory(event) {
 
   const newStory = {title: title, author: author, url: url}
   storyList.addStory(currentUser, newStory)
-
+  $submissionForm.hide()
 }
 
 $submitPost.on("submit", submitNewStory)
@@ -94,3 +106,10 @@ async function toggleStoryFavorite(event) {
 }
 
 $storiesLists.on("click", ".star", toggleStoryFavorite);
+
+
+// async function removeStory(event) {
+//   preventDefault()
+//   console.log("Hello")
+
+// }

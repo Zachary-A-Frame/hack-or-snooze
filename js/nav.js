@@ -43,7 +43,9 @@ $navSubmit.on("click", addNewStory)
 
 function showFavorites() {
   hidePageComponents();
-
 }
+
+// $("#submit-button").on("click", console.log("Hemlo"))
+
 
 $navFavorites.on("click", showFavorites)

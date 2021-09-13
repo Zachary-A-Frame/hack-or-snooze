@@ -97,6 +97,20 @@ class StoryList {
   }
 }
 
+// async function removeStory(user, newStory) {
+//   const token = user.loginToken
+//   await axios({
+//     url: `${BASE_URL}/stories/${storyId}`,
+//     method: "DELETE",
+//     data: { token: token }
+//   })
+//   // this.stories = this.stories.filter(story => story.storyId !== storyId);
+
+
+// }
+
+
+
 // * Testing material *
 // let newStory = await storyList.addStory(currentUser,
 // { title: "Test1", author: "Me1", url: "http://meow1.com" });
@@ -142,7 +156,6 @@ class User {
   async addFavorite(story) {
     this.favorites.push(story);
     await this.addOrRemoveFavorite("add", story)
-
   }
 
   async removeFavorite(story) {
@@ -159,6 +172,7 @@ class User {
       data: { token },
     });
   }
+
 
 
   static async signup(username, password, name) {
