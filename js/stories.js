@@ -87,7 +87,9 @@ function putFavoritesOnPage() {
     $favoriteStoriesList.show();
     $favoriteStoriesList.append($story);
   }
-  console.log(currentUser.favorites[0])
+  // console.log(currentUser.favorites[0])
+  $favoriteStoriesList.on("click", ".star", toggleStoryFavorite);
+
 }
 
 function submitNewStory(event) {
@@ -117,6 +119,7 @@ async function toggleStoryFavorite(event) {
     await currentUser.addFavorite(story)
     $target.closest("i").toggleClass("fas far")
   }
+
 }
 
 $storiesLists.on("click", ".star", toggleStoryFavorite);

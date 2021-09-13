@@ -161,6 +161,7 @@ class User {
   async removeFavorite(story) {
     this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
     await this.addOrRemoveFavorite("remove", story);
+    showFavorites()
   }
 
   async addOrRemoveFavorite(newState, story) {
